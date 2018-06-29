@@ -307,13 +307,11 @@ gulp.task("build", function() {
     );
 });
 
-const shell = require("shelljs");
 gulp.task("publish", function() {
     let _publish = gulp.src([
         __path(SRC, CONF.source.js, "module/*"),
         __path(SRC, CONF.source.css, "module/*"),
         __path(__dirname, "readme.md"),
     ]);
-    shell.exec(`git checkout dev`);
     _publish.pipe(gulp.dest(__path(__dirname, "publish")));
 });
