@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="Keywords" content=""/>
+<meta name="Description" content=""/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta name="renderer" content="webkit">
+<meta http-equiv="Cache-Control" content="no-siteapp"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="format-detection" content="telephone=no" /><title>Pagination Demo</title>
+<link rel="stylesheet" href="./css/pagination.css"/>
+<link rel="stylesheet" href="./css/common.css"/>
+<script type="text/javascript" src="./js/lib/jquery.min.js"></script>
+<script type="text/javascript" src="./js/lib/rainbow.min.js"></script>
+</head>
+<body>
+<div class="c-sidebar">
+    <div class="c-sidebar-header">
+        <h1 class="u-title"><a href="index.html">BunnyUI</a></h1>
+        <a class="u-link" href="https://github.com/iRuxu/BunnyUI">View on Github</a>
+    </div>
+    <div class="c-sidebar-list">
+        <ul class="u-list">
+            <li><a href="Pagination.html">Pagination<em>分页</em></a></li>
+        </ul>
+    </div>
+</div><div class="main">
+<div class="m-header">
+    <h1 class="u-title">Pagination</h1>
+    <a class="u-srcode" href="">&lt; Source Code &gt;</a>
+</div>
+<div class="demo" id="demo">
+
+</div>
+<div class="m-desc">
+
+1.引入JS文件
+<pre><code data-language="javascript">import Pagination from './module/Pagination.js'</code></pre>
+
+2.创建实例
+<pre><code data-language="javascript">var test = new Pagination({
+    container : '.demo',    //加载容器
+    total : 28,             //总页数
+    limit : 10,             //每组最多显示页数
+    start : 2               //起始页
+})</code></pre>
+
+3.实例方法
+<pre><code data-language="javascript">test.onchange(callback(page,ele))
+//当发生页码变更时，page为新的页码数，ele为点击的DOM元素，回调中this为实例对象，可通过._to(page)方法自定义页面跳转
+</code></pre>
+
+4.引入CSS文件并自定义外观
+<pre><code data-language="html"><link rel="stylesheet" href="css/Pagination.css" /></code></pre>
+
+<script src="./js/pagination.js"></script>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{{!-- 头部 --}}
+{{> head}}
+<title>Pagination Demo</title>
+<link rel="stylesheet" href="{{__css}}pagination.css"/>
+{{> header}}
+
+{{!-- 导航 --}}
+<div class="m-header">
+    <h1 class="u-title">Pagination</h1>
+    <a class="u-srcode" href="">&lt; Source Code &gt;</a>
+</div>
+{{!-- 示例 --}}
+<div class="demo" id="demo">
+
+</div>
+{{!-- 文档 --}}
+<div class="m-desc">
+
+1.引入JS文件
+<pre><code data-language="javascript">import Pagination from './module/Pagination.js'</code></pre>
+
+2.创建实例
+<pre><code data-language="javascript">var test = new Pagination({
+    container : '.demo',    //加载容器
+    total : 28,             //总页数
+    limit : 10,             //每组最多显示页数
+    start : 2               //起始页
+})</code></pre>
+
+3.实例方法
+<pre><code data-language="javascript">test.onchange(callback(page,ele))
+//当发生页码变更时，page为新的页码数，ele为点击的DOM元素，回调中this为实例对象，可通过._to(page)方法自定义页面跳转
+</code></pre>
+
+4.引入CSS文件并自定义外观
+<pre><code data-language="html"><link rel="stylesheet" href="css/Pagination.css" /></code></pre>
+
+{{!-- 尾部 --}}
+<script src="{{__js}}pagination.js"></script>
+{{> footer}}
