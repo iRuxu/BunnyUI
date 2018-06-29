@@ -307,11 +307,17 @@ gulp.task("build", function() {
     );
 });
 
+const fs = require("fs");
+const _fs = require("fs-extra");
 gulp.task("publish", function() {
-    let _publish = gulp.src([
-        __path(SRC, CONF.source.js, "module/*"),
-        __path(SRC, CONF.source.css, "module/*"),
-        __path(__dirname, "readme.md"),
-    ]);
-    _publish.pipe(gulp.dest(__path(__dirname, "publish")));
+    let js = gulp.src([__path(SRC, CONF.source.js, "module/*")]);
+    let css = gulp
+        .src([__path(SRC, CONF.source.css, "module/*")])
+        .pipe(less())
+        .pipe(autoprefixer({browsers: ["last 4 versions"]}))
+        .pipe(cleancss({compatibility: "ie8"}))
+    let md = gulp.src([__path(__dirname, "readme.md")]);
+    js.pipe(gulp.dest(__path(__dirname, "publish")));
+    css.pipe(gulp.dest(__path(__dirname, "publish")));
+    md.pipe(gulp.dest(__path(__dirname, "publish")));
 });
