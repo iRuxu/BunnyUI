@@ -8,6 +8,7 @@ import { SSL_OP_MSIE_SSLV2_RSA_PADDING } from "constants";
 
 //define private var && store the value in the memory
 let _current = 0;
+let current = Symbol('current')
 class Pagination {
     constructor(option) {
         let { total, limit, start, container } = option;
@@ -56,14 +57,14 @@ class Pagination {
         this.limit = limit; //max visible pages count
         this.start = start; //default page position
 
-        this.current = start; //current page position
+        this[current] = start; //current page position
         this._initialize();
     }
 
-    get current() {
+    get [current]() {
         return _current;
     }
-    set current(page) {
+    set [current](page) {
         if (isNaN(page) || page < 1) {
             console.error("[Pagination]:Invalid page number");
             return;
@@ -141,10 +142,10 @@ class Pagination {
             let type = $(this).attr("data-type");
             switch (type) {
                 case "prev":
-                    page = o.current - 1;
+                    page = o[current] - 1;
                     break;
                 case "next":
-                    page = o.current + 1;
+                    page = o[current] + 1;
                     break;
                 case "first":
                     page = 1;
@@ -248,14 +249,14 @@ class Pagination {
 
     to(page) {
         //if there is no changes
-        if (page == this.current) {
+        if (page == this[current]) {
             console.warn("[Pagination]:page is not changed");
             return;
         }
 
         //Judge if it need rebuild list
-        let old = this.current;
-        this.current = page;
+        let old = this[current];
+        this[current] = page;
         let group = Math.ceil(old / this.limit);
         group == this._groupIndex
             ? this._render()
@@ -265,10 +266,14 @@ class Pagination {
     onchange(callback) {
         const o = this;
         this.sample.on("pagination", function(e, clickElement) {
-            let page = o.current;
+            let page = o[current];
             callback.call(clickElement, page)
         });
         return this
+    }
+
+    getCurrentPage(){
+        return this[current]
     }
 }
 export default Pagination;

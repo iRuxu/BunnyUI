@@ -12,3 +12,4 @@ test.onchange(function (page){
     console.log(page)
     console.log(this)
 })
+console.log(test.getCurrentPage())
