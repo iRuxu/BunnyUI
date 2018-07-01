@@ -8,8 +8,7 @@ var test = new Pagination({
 })
 
 console.log(test)
-test.onchange(function (page,element){
+test.onchange(function (page){
     console.log(page)
-    console.log(element)
     console.log(this)
 })

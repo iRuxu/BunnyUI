@@ -17,7 +17,7 @@
 <div class="m-desc">
 
 1.引入JS文件
-<pre><code data-language="javascript">import Pagination from './module/Pagination.js'</code></pre>
+<pre><code data-language="javascript">import Pagination from './$path/Pagination.js'</code></pre>
 
 2.创建实例
 <pre><code data-language="javascript">var test = new Pagination({
@@ -28,12 +28,16 @@
 })</code></pre>
 
 3.实例方法
-<pre><code data-language="javascript">test.onchange(callback(page,ele))
-//当发生页码变更时，page为新的页码数，ele为点击的DOM元素，回调中this为实例对象，可通过._to(page)方法自定义页面跳转
+<pre><code data-language="javascript">test.onchange(callback(page))
+//当发生页码变更时执行一个回调函数，page为新的页码数，this为当前点击的DOM元素，return返回当前实例
+//自行设置项：在数据loading开始之后显示load元素，在数据loaded后隐藏load元素
+
+test.to(page)
+//如有需要，可通过该方法绑定外部操作页面跳转
 </code></pre>
 
-4.引入CSS文件并自定义外观
-<pre><code data-language="html"><link rel="stylesheet" href="css/Pagination.css" /></code></pre>
+4.引入CSS文件或自定义外观
+<pre><code data-language="html">&lt;link rel="stylesheet" href="./$path/Pagination.css" /&gt;</code></pre>
 
 {{!-- 尾部 --}}
 <script src="{{__js}}pagination.js"></script>

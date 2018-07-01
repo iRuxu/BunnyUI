@@ -602,6 +602,7 @@ body {
   line-height: 2;
   background-color: #fff;
   color: #333;
+  min-width: 1024px;
 }
 a {
   color: #333;
@@ -618,6 +619,7 @@ a {
   height: 100%;
   padding: 20px;
   background-color: #f7f7f7;
+  border-right: 1px solid #ddd;
 }
 .c-sidebar-header {
   text-align: center;

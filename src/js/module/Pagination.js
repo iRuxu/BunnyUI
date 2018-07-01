@@ -1,3 +1,5 @@
+import { SSL_OP_MSIE_SSLV2_RSA_PADDING } from "constants";
+
 /* 
  * Pagination
  * BunnyUI https://github.com/iRuxu/BunnyUI
@@ -125,8 +127,7 @@ class Pagination {
             </div>
         `;
 
-        const sample = $(template);
-        this.container.append(sample);
+        this.container.append($(template));
         this.sample = this.container.children(".w-pages");
 
         //setup item events
@@ -154,8 +155,8 @@ class Pagination {
                 default:
                     break;
             }
-            o._to(page);
-            o.sample.trigger("pagination",$(this));
+            o.to(page);
+            o.sample.trigger("pagination", $(this));
         });
 
         this._build();
@@ -214,8 +215,8 @@ class Pagination {
             }
 
             page = parseInt(page);
-            o._to(page);
-            o.sample.trigger("pagination",$(this));
+            o.to(page);
+            o.sample.trigger("pagination", $(this));
         });
     }
 
@@ -240,12 +241,12 @@ class Pagination {
         if (this._isFirst) $first.add($prev).addClass("disabled");
         if (this._isLast) {
             $last.add($next).addClass("disabled");
-            $load.addClass('hide');
-            $null.addClass('show');
+            $load.addClass("hide");
+            $null.addClass("show");
         }
     }
 
-    _to(page) {
+    to(page) {
         //if there is no changes
         if (page == this.current) {
             console.warn("[Pagination]:page is not changed");
@@ -263,10 +264,11 @@ class Pagination {
 
     onchange(callback) {
         const o = this;
-        this.sample.on("pagination", function(e,clickElement) {
+        this.sample.on("pagination", function(e, clickElement) {
             let page = o.current;
-            callback.call(o,page,clickElement)
+            callback.call(clickElement, page)
         });
+        return this
     }
 }
 export default Pagination;
